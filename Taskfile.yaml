@@ -1,0 +1,28 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+tasks:
+  dependency:
+    desc: Install dependencies
+    cmds:
+      - go get -v ./...
+    silent: true
+  test:
+    desc: Run test
+    cmds:
+      - go test ./...
+    silent: true
+  coverage:
+    desc: Run coverage
+    cmds:
+      - go test -cover ./...
+    silent: true
+  install:
+    desc: Install command locally
+    cmds:
+      - go install
+    silent: true
