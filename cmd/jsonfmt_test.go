@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"log"
 	"os"
+	"runtime"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -22,6 +23,14 @@ func runTest(args []string) error {
 	}
 
 	return nil
+}
+
+func getOutputPath() string {
+	if runtime.GOOS == "windows" {
+		return `%Temp%\output.json`
+	}
+
+	return "/tmp/output.json"
 }
 
 func Test_Command_WithValidArguments(t *testing.T) {
@@ -136,9 +145,9 @@ foo"email": "john.doe@example.com"
 		{
 			name: "format with -o",
 			args: args{
-				args: []string{"-o", "/tmp/output.json", TestFile01},
+				args: []string{"-o", getOutputPath(), TestFile01},
 				testFn: func(t *testing.T, out bytes.Buffer) {
-					b, err := os.ReadFile("/tmp/output.json")
+					b, err := os.ReadFile(getOutputPath())
 					assert.NoError(t, err)
 					expected := `{
   "id": "56a4f58f-745b-402d-90d5-61cc863bc588",
