@@ -45,7 +45,7 @@ jobs:
           version: ${{ env.GOLANG_CI_LINT_VERSION }}
 
       - name: Test
-        run: go test -v .
+        run: go test -v ./...
 
       - name: Build
-        run: go build -v .
+        run: go build -o /tmp/jsonfmt .
