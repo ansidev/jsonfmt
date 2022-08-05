@@ -24,10 +24,10 @@ options:
       - perf
       - refactor
     title_maps:
-      feat: New
-      fix: Fixed
-      perf: Improved
-      refactor: Refactored
+      feat: Features
+      fix: Bug Fixes
+      perf: Performance Improvements
+      refactor: Code Refactoring
   header:
     pattern: "^(\\w*)(?:\\(([\\w\\$\\.\\-\\*\\s]*)\\))?\\:\\s(.*)$"
     pattern_maps:
