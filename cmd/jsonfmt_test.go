@@ -10,7 +10,7 @@ import (
 )
 
 const (
-	TestFile01 = "../test/sample.json"
+	TestFile = "../test/sample.json"
 )
 
 func runTest(args []string) error {
@@ -22,6 +22,10 @@ func runTest(args []string) error {
 	}
 
 	return nil
+}
+
+func getOutputPath() string {
+	return "output.json"
 }
 
 func Test_Command_WithValidArguments(t *testing.T) {
@@ -36,7 +40,7 @@ func Test_Command_WithValidArguments(t *testing.T) {
 		{
 			name: "format with -c",
 			args: args{
-				args: []string{"-c", TestFile01},
+				args: []string{"-c", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := "{\n  \x1b[94m\"id\"\x1b[0m: \x1b[92m\"56a4f58f-745b-402d-90d5-61cc863bc588\"\x1b[0m,\n  \x1b[94m\"first_name\"\x1b[0m: \x1b[92m\"John\"\x1b[0m,\n  \x1b[94m\"last_name\"\x1b[0m: \x1b[92m\"Doe\"\x1b[0m,\n  \x1b[94m\"email\"\x1b[0m: \x1b[92m\"john.doe@example.com\"\x1b[0m\n}\n"
 					assert.Equal(t, expected, out.String())
@@ -46,7 +50,7 @@ func Test_Command_WithValidArguments(t *testing.T) {
 		{
 			name: "format with -d",
 			args: args{
-				args: []string{"-d", TestFile01},
+				args: []string{"-d", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `jsonfmt config
 ==============
@@ -77,7 +81,7 @@ func Test_Command_WithValidArguments(t *testing.T) {
 		{
 			name: "format with -i='w:2'",
 			args: args{
-				args: []string{"-i", "w:2", TestFile01},
+				args: []string{"-i", "w:2", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `{
   "id": "56a4f58f-745b-402d-90d5-61cc863bc588",
@@ -93,7 +97,7 @@ func Test_Command_WithValidArguments(t *testing.T) {
 		{
 			name: "format with -i='t:1'",
 			args: args{
-				args: []string{"-i", "t:1", TestFile01},
+				args: []string{"-i", "t:1", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `{
 	"id": "56a4f58f-745b-402d-90d5-61cc863bc588",
@@ -109,7 +113,7 @@ func Test_Command_WithValidArguments(t *testing.T) {
 		{
 			name: "format with -i='s:foo'",
 			args: args{
-				args: []string{"-i", "s:foo", TestFile01},
+				args: []string{"-i", "s:foo", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `{
 foo"id": "56a4f58f-745b-402d-90d5-61cc863bc588",
@@ -125,7 +129,7 @@ foo"email": "john.doe@example.com"
 		{
 			name: "format with -m",
 			args: args{
-				args: []string{"-m", TestFile01},
+				args: []string{"-m", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `{"id":"56a4f58f-745b-402d-90d5-61cc863bc588","first_name":"John","last_name":"Doe","email":"john.doe@example.com"}
 `
@@ -136,9 +140,9 @@ foo"email": "john.doe@example.com"
 		{
 			name: "format with -o",
 			args: args{
-				args: []string{"-o", "/tmp/output.json", TestFile01},
+				args: []string{"-o", getOutputPath(), TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
-					b, err := os.ReadFile("/tmp/output.json")
+					b, err := os.ReadFile(getOutputPath())
 					assert.NoError(t, err)
 					expected := `{
   "id": "56a4f58f-745b-402d-90d5-61cc863bc588",
@@ -148,13 +152,14 @@ foo"email": "john.doe@example.com"
 }
 `
 					assert.Equal(t, expected, string(b))
+					os.Remove(getOutputPath())
 				},
 			},
 		},
 		{
 			name: "format with -p",
 			args: args{
-				args: []string{"-p", "foo", TestFile01},
+				args: []string{"-p", "foo", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `foo{
 foo  "id": "56a4f58f-745b-402d-90d5-61cc863bc588",
@@ -170,7 +175,7 @@ foo}
 		{
 			name: "format with -s",
 			args: args{
-				args: []string{"-s", TestFile01},
+				args: []string{"-s", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `{
   "email": "john.doe@example.com",
@@ -186,7 +191,7 @@ foo}
 		{
 			name: "format with -w",
 			args: args{
-				args: []string{"-w", "30", TestFile01},
+				args: []string{"-w", "30", TestFile},
 				testFn: func(t *testing.T, out bytes.Buffer) {
 					expected := `{
   "id": "56a4f58f-745b-402d-90d5-61cc863bc588",

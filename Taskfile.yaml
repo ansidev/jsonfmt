@@ -1,26 +1,36 @@
-# https://taskfile.dev
-
 version: '3'
 
-vars:
-  GREETING: Hello, World!
-
 tasks:
-  dependency:
+  deps:
     desc: Install dependencies
     cmds:
       - go get -v ./...
     silent: true
+
+  lint:
+    desc: Lint
+    cmds:
+      - golangci-lint run ./...
+    silent: true
+
   test:
     desc: Run test
     cmds:
-      - go test ./...
+      - go test -v ./...
     silent: true
+
   coverage:
     desc: Run coverage
     cmds:
       - go test -cover ./...
     silent: true
+
+  build:
+    desc: Build
+    cmds:
+      - go build -o ./jsonfmt .
+    silent: true
+
   install:
     desc: Install command locally
     cmds:
