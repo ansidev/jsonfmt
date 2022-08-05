@@ -1,7 +1,12 @@
 # CHANGELOG
 
+<a name="v1.0.1"></a>
+## [v1.0.1](https://github.com/ansidev/jsonfmt/releases/tag/v1.0.1) - 2022-08-05
+### Features
+* update git-chglog config and changelog template ([0d19dfc](https://github.com/ansidev/jsonfmt/commit/0d19dfc055dfc8e20d9569134592ea7646b131d4)) by [Le Minh Tri](mailto:ansidev@gmail.com) on 2022-08-05.
+
 <a name="v1.0.0"></a>
-## v1.0.0 - 2022-08-05
+## [v1.0.0](https://github.com/ansidev/jsonfmt/releases/tag/v1.0.0) - 2022-08-05
 ### Features
 * add git-chglog ([4f0a56d](https://github.com/ansidev/jsonfmt/commit/4f0a56d53690dc3f69da28d3203b09a9d9bffda5)) by [Le Minh Tri](mailto:ansidev@gmail.com) on 2022-08-05.
 * add workflow ([bc613ae](https://github.com/ansidev/jsonfmt/commit/bc613ae2a1b040e66aa21a01bc8913dbe37806df)) by [Le Minh Tri](mailto:ansidev@gmail.com) on 2022-08-04.
