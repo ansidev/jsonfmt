@@ -8,13 +8,13 @@ on:
     tags:
       - "v*.*.*"
     paths:
-      - '.github/workflows/main.yaml'
-      - '*.go'
-      - 'go.mod'
-      - 'go.sum'
-      - 'cmd/**'
-      - 'config/**'
-      - 'test/**'
+      - ".github/workflows/main.yaml"
+      - "*.go"
+      - "go.mod"
+      - "go.sum"
+      - "cmd/**"
+      - "config/**"
+      - "test/**"
   pull_request:
     branches:
       - main
@@ -43,6 +43,7 @@ jobs:
         uses: golangci/golangci-lint-action@v3
         with:
           version: ${{ env.GOLANG_CI_LINT_VERSION }}
+          args: --timeout=3m
 
       - name: Test
         run: go test -v ./...
