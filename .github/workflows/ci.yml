@@ -1,0 +1,40 @@
+name: Go CI
+
+on:
+  push:
+    branches:
+      - main
+      - release/**
+    tags:
+      - "v*.*.*"
+    paths:
+      - ".github/workflows/ci.yml"
+      - "*.go"
+      - "go.mod"
+      - "go.sum"
+      - "cmd/**"
+      - "config/**"
+      - "test/**"
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check:
+    name: Check
+    strategy:
+      matrix:
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+        go-version:
+          - '1.18'
+          - '1.19'
+          - '1.20'
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Run Go CI
+        uses: ghacts/go@main
+        with:
+          go-version: ${{ matrix.go-version }}
