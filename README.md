@@ -2,11 +2,12 @@
 
 [![GoDoc](https://pkg.go.dev/badge/github.com/ansidev/jsonfmt?status.svg)](https://pkg.go.dev/github.com/ansidev/jsonfmt?tab=doc)
 [![Release](https://img.shields.io/github/release/ansidev/jsonfmt.svg)](https://github.com/ansidev/jsonfmt/releases)
-[![Build Status](https://github.com/ansidev/jsonfmt/workflows/Main/badge.svg?branch=main)](https://github.com/ansidev/jsonfmt/actions?query=branch%3Amain)
+[![Build Status](https://github.com/ansidev/jsonfmt/actions/workflows/ci.yml/badge.svg)](https://github.com/ansidev/jsonfmt/actions/workflows/ci.yml)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ansidev/jsonfmt)](https://goreportcard.com/report/github.com/ansidev/jsonfmt)
 [![Sourcegraph](https://sourcegraph.com/github.com/ansidev/jsonfmt/-/badge.svg)](https://sourcegraph.com/github.com/ansidev/jsonfmt?badge)
 
 ## Getting Started
+
 ### Installation
 
 ```
